@@ -24,6 +24,9 @@ LOCAL_SRC_FILES += \
 	Tremolo/mdctARM.s
 LOCAL_CFLAGS += \
     -D_ARM_ASSEM_
+# Assembly code in asm_arm.h does not compile with Clang.
+LOCAL_CLANG_ASFLAGS_arm += \
+    -no-integrated-as
 else
 LOCAL_CFLAGS += \
     -DONLY_C
@@ -32,6 +35,8 @@ LOCAL_CFLAGS+= -O2
 
 LOCAL_C_INCLUDES:= \
 	$(LOCAL_PATH)/Tremolo
+
+LOCAL_SHARED_LIBRARIES := liblog
 
 LOCAL_ARM_MODE := arm
 
